@@ -11,7 +11,7 @@ const Verify = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const verified = jwt.verify(token, process.env.APP_TOKEN_SECRET!);
-    req.body.user = verified;
+    req.headers["user"] = JSON.stringify(verified);
 
     next();
   } catch (error) {
